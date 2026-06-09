@@ -14,8 +14,10 @@ This project was built from scratch as a practical study in replicating premium 
 
 ## 🚀 Key Features Cloned & Re-Engineered
 * **Yellow Hero Section**: Complete with animated inline symbols (⏩, ▲, ◆, 🖼️) running optimized local GIFs, and an infinite logo marquee ticker scroll running at a smooth 60fps via pure CSS keyframes.
+* **Specialty Products Page Suite**: Rebuilt landing page and detailed casualty subpages (`/products`, `/products/primary-casualty`, `/products/excess-casualty`, `/products/builders-risk`) with state availability checklists and testimonial quote sliders.
+* **Industries Page Suite**: Complete replication of the `/industries`, `/industry/construction`, and `/industry/renewable-energy-power` pages featuring responsive layouts, custom grids, local-hosted assets, and the scroll-locked vertical accordion reveal animations synced across all pages.
 * **Interactive State Selector**: A fully responsive availability check engine mapping coverages (GL, Auto, Workers' Comp, Excess, and Builder's Risk) interactively across all 50 US States + DC.
-* **Section 5 Scroll-Driven Accordion**: A custom scroll-locked vertical reveal accordion on `/products` powered by GSAP matchMedia. Clicking headers triggers smooth navigation scrolling via Lenis, and scrolling expands/collapses detailed content panels seamlessly on desktop.
+* **Section 5 Scroll-Driven Accordion**: A custom scroll-locked vertical reveal accordion on `/products` and `/industries` pages powered by GSAP matchMedia. Clicking headers triggers smooth navigation scrolling via Lenis, and scrolling expands/collapses detailed content panels seamlessly on desktop.
 * **Branded Testimonial Swiper**: An interactive sliding quote panel deployed across all product detail subpages (`/products/primary-casualty`, `/products/excess-casualty`, and `/products/builders-risk`) with arrow control click actions, automatic pagination counters (`< X OF Y >`), and responsive vertical flex stacking on mobile viewports.
 * **Responsive Navigation & Branded Footer**: Premium dropdown toggle components aligned to desktop container query break points, featuring scroll-direction awareness that hides the header on downward scroll and slides it back into view when scrolling up.
 
