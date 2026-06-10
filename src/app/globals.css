@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./shepherd-shared.css";
 
 :root {
   --background: #ffffff;
@@ -12,15 +13,288 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Navigation Component Container Queries & Dropdown Styles */
+@container (min-width: 52em) {
+  .nav_desktop_wrap, .nav_dropdown_backdrop {
+    display: block !important;
+  }
+  .nav_desktop_wrap:not(.w-condition-invisible) ~ .nav_mobile_wrap,
+  .nav_desktop_wrap:not(.w-condition-invisible) ~ .nav_menu_backdrop {
+    display: none !important;
+  }
+}
+
+html:not(.wf-design-mode) .nav_dropdown_component > .w-dropdown-list {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--nav--dropdown-close-duration, 0.3s) ease;
+  visibility: hidden;
+  opacity: 0;
+}
+
+html:not(.wf-design-mode) .nav_dropdown_component > .w-dropdown-list.w--open {
+  visibility: visible !important;
+  opacity: 1 !important;
+  grid-template-rows: 1fr !important;
+}
+
+.nav_dropdown_component > .w-dropdown-list > * {
+  overflow: hidden;
+}
+
+.nav_dropdown_component:has(> .w-dropdown-toggle[aria-expanded="true"]) > .w-dropdown-list {
+  --nav--dropdown-close-duration: var(--nav--dropdown-open-duration, 0.3s);
+  grid-template-rows: 1fr;
+}
+
+.nav_drop_backdrop {
+  transition: opacity 0.3s ease;
+}
+
+body:has(.nav_dropdown_component > [aria-expanded="true"]) .nav_drop_backdrop {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Scroll disappear animation style for nav_component */
+.nav_component {
+  will-change: transform;
+}
+
+/* Footer Contact Button customization */
+.footer-grid .button_main_wrap {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.footer-grid .button_main_element {
+  width: 100%;
+  background-color: transparent !important;
+  border: 1px solid #000000 !important;
+  color: #000000 !important;
+  border-radius: 0px !important; /* Sharp corners */
+  padding: 1.25rem 2rem !important;
+  font-family: var(--_typography---font--secondary-family), sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.2s ease !important;
+}
+
+.footer-grid .button_main_wrap:hover .button_main_element {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Custom inline icon styles for Hero heading symbols */
+.txt-icon-arrow::after {
+  content: "";
+  background: url('/assets/gifs/shep-side-swipe.gif') 0 0 no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.75em;
+  height: 0.75em;
+  transform: translate(0px, 0em);
+  margin-bottom: -0.1em;
+  margin-top: -0.2em;
+  margin-left: -0.1em;
+  background-size: contain;
+}
+
+.txt-icon-arrow.is-square::after {
+  background: url('/assets/gifs/shep-square.gif') 0 0 no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.85em;
+  height: 0.85em;
+  transform: translate(0px, 0em);
+  margin-bottom: -0.1em;
+  margin-top: -0.2em;
+  margin-left: -0.3em;
+  margin-right: -0.2em;
+  background-size: contain;
+}
+
+.txt-icon-arrow.is-up::after {
+  background: url('/assets/gifs/shep-up.gif') 0 0 no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.75em;
+  height: 0.75em;
+  transform: translate(0px, 0em);
+  margin-bottom: -0.1em;
+  margin-top: -0.2em;
+  margin-left: -0.1em;
+  background-size: contain;
+}
+
+.txt-icon-arrow.is-img::after {
+  background: url('/assets/images/group-2147210670.webp') 0 0 no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.75em;
+  height: 0.75em;
+  transform: translate(0px, 0em);
+  margin-bottom: -0.1em;
+  margin-top: -0.2em;
+  margin-left: -0.1em;
+  margin-right: -0.4em;
+  background-size: contain;
+}
+
+/* Partners Logo Marquee Ticker Scroll Animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - 4rem));
+  }
+}
+
+.ticker-coll-wrap {
+  animation: scroll 90s linear infinite;
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+
+/* Hide scrollbar on ticker wrap */
+.ticker-wrap::-webkit-scrollbar {
+  display: none;
+}
+.ticker-wrap {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Testimonial Slider Fixes */
+.split-card.is-testimonials {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.split-card.is-testimonials .div-block-10 {
+  flex: 1 1 50% !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.split-card.is-testimonials .split-card-img-wrap {
+  flex: 1 1 50% !important;
+  min-width: 0 !important;
+}
+
+@media screen and (max-width: 991px) {
+  .split-card.is-testimonials {
+    flex-direction: column !important;
+  }
+  .split-card.is-testimonials .div-block-10,
+  .split-card.is-testimonials .split-card-img-wrap {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* Appetite selector list bullets and text uppercase overrides */
+.appetite-details-flex .checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appetite-details-flex .solution-check {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: #000000 !important;
+  border: none !important;
+  border-radius: 0px !important; /* Force sharp square shape */
+}
+
+.appetite-details-flex .check-txt {
+  text-transform: uppercase !important;
+}
+
+/* Appetite selector dropdown overrides */
+.dropdown-wrap.is-appetite {
+  border: 1px solid #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.dropdown-btn.is-top {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 0.75rem 1rem !important;
+  border: 1px solid #000000 !important;
+  background-color: #ffffff !important;
+  cursor: pointer !important;
+}
+
+.dropdown-btn.is-top .div-block-14 {
+  width: 16px !important;
+  height: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.dropdown-btn.is-top .u-text-style-small {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+/* Filter component active style and tags trailing comma hiding */
+.filter-check.is-active .filter-x {
+  display: flex !important;
+}
+
+.tags-item:last-child .coma {
+  display: none !important;
+}
+
+.filter-check input[type="checkbox"] {
+  display: none !important;
+}
+
+/* Dropdown arrow chevron rotation rules */
+.nav_links_svg svg {
+  transform: rotate(90deg) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.nav_links_link[aria-expanded="true"] .nav_links_svg svg {
+  transform: rotate(-90deg) !important;
+}
+
+/* Category filter layout and typography refinements */
+.collection-list {
+  grid-column-gap: 2.5rem !important; /* Spaced out further */
+  grid-row-gap: 1.5rem !important;
+}
+
+.filter-check .w-form-label {
+  font-size: 0.85rem !important; /* Slightly larger */
+  font-weight: 700 !important; /* Bolder */
+  letter-spacing: 0.05em !important; /* Increased tracking */
+  color: #000000 !important; /* Dark black */
+  transition: color 0.2s ease;
+}
+
+.filter-check.is-active .w-form-label {
+  color: var(--swatch--pink) !important; /* Pink when active */
+}
+
+
